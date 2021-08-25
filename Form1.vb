@@ -2,7 +2,17 @@
 Imports System.Collections
 
 
+
+
 Public Class Form1
+
+    Private Enum ListViewColumns
+        DATE_COL = 0
+        CUST_NAME_COL = 1
+        LABOR_COST_COL = 2
+        PARTS_COST_COL = 3
+        BILL_TOTAL_COL = 4
+    End Enum
     Private Function ValidateInput() As Boolean
         '==========================================================
         '1.) Customer name must not be empty
@@ -34,6 +44,53 @@ Public Class Form1
 
 
     End Function
+
+    Private Function AddBill() As Boolean
+        '==========================================================
+        'Calculate labor cost. Then create and populate new
+        'ListViewItem and add it to the ListView control.
+        'Then update the bill count and grand total labels for labor cost
+        'and bill totals.
+        '==========================================================
+        Try
+            'Get the current date and add it to the ListViewItem, which will eventually
+            'be added to the ListView control
+            Dim objListViewItem As New ListViewItem(Today.ToString("MM/dd/yyyy"))
+            Dim dblLaborCost As Double = CDbl(txtHoursOfLabor.Text) * CDbl(txtLaborRate.Text)
+            Dim dblBillTotal As Double = (CDbl(txtCostOfParts.Text) + dblLaborCost) * CDbl(1 + (txtTaxRate.Text / 100))
+
+            'Add the remaining items to the ListView using the values in the corrsponding
+            'textboxes.
+            With objListViewItem
+                .SubItems.Add(ListViewColumns.CUST_NAME_COL).Text = txtCustomerName.Text
+                .SubItems.Add(ListViewColumns.LABOR_COST_COL).Text = FormatCurrency(dblLaborCost)
+                .SubItems.Add(ListViewColumns.PARTS_COST_COL).Text = FormatCurrency(CDbl(txtCostOfParts.Text))
+                .SubItems.Add(ListViewColumns.BILL_TOTAL_COL).Text = FormatCurrency(dblBillTotal)
+            End With
+
+            'Add fully populated ListViewItem to the ListView control
+            lsvBills.Items.Add(objListViewItem)
+
+            'TODO Update label controls beneath the ListView with current totals
+        Catch ex As Exception
+            msgAttention(ex.Message)
+            Return False
+        End Try
+
+        Return True
+    End Function
+
+    Private Sub ToggleButtons(ByVal ParamArray Buttons() As Object)
+        '==========================================================
+        'Toggle visibility of each button passed to the procedure.
+        '==========================================================
+
+        For Each obj As Button In Buttons
+            Dim objButton As Button = CType(obj, Button)
+            objButton.Visible = Not objButton.Visible
+        Next
+
+    End Sub
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -45,10 +102,25 @@ Public Class Form1
         '==========================================================
         If ValidateInput() Then
             msgInfo("Validations were successful!")
+            If Not AddBill() Then Exit Sub
+
         Else
             'if a validation has failed the TextValidator object
             'will have displayed a warning.
 
+        End If
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+
+    End Sub
+
+    Private Sub txtCustomerName_LostFocus(sender As Object, e As EventArgs) Handles txtCustomerName.LostFocus
+        '==========================================================
+        'Convert customer name to Proper Case.
+        '==========================================================
+        If txtCustomerName.Text <> "" Then
+            txtCustomerName.Text = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(txtCustomerName.Text)
         End If
     End Sub
 End Class

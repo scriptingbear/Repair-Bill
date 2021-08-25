@@ -16,7 +16,7 @@ Public Class Form1
         Dim Validators As New List(Of TextBoxValidator)
 
         With Validators
-            .Add(New TextBoxValidator(txtCustomerName, "^\w$", "Invalid Customer Name"))
+            .Add(New TextBoxValidator(txtCustomerName, "^\S\w*", "Invalid Customer Name"))
 
         End With
 
@@ -40,9 +40,10 @@ Public Class Form1
         'the ListView control.
         '==========================================================
         If ValidateInput() Then
-
+            msgInfo("Validations were successful!")
         Else
-
+            'if a validation has failed the TextValidator object
+            'will have displayed a warning.
 
         End If
     End Sub

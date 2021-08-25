@@ -41,10 +41,12 @@ Partial Class Form1
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnUpdate = New System.Windows.Forms.Button()
         Me.btnCancelUpdate = New System.Windows.Forms.Button()
+        Me.txtLaborRate = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.txtLaborRate = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'lsvBills
@@ -59,7 +61,7 @@ Partial Class Form1
         Me.lsvBills.MultiSelect = False
         Me.lsvBills.Name = "lsvBills"
         Me.lsvBills.ShowGroups = False
-        Me.lsvBills.Size = New System.Drawing.Size(702, 227)
+        Me.lsvBills.Size = New System.Drawing.Size(639, 227)
         Me.lsvBills.TabIndex = 1
         Me.lsvBills.UseCompatibleStateImageBehavior = False
         Me.lsvBills.View = System.Windows.Forms.View.Details
@@ -109,10 +111,10 @@ Partial Class Form1
         '
         'txtCostOfParts
         '
-        Me.txtCostOfParts.Location = New System.Drawing.Point(201, 123)
+        Me.txtCostOfParts.Location = New System.Drawing.Point(232, 123)
         Me.txtCostOfParts.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCostOfParts.Name = "txtCostOfParts"
-        Me.txtCostOfParts.Size = New System.Drawing.Size(280, 34)
+        Me.txtCostOfParts.Size = New System.Drawing.Size(174, 34)
         Me.txtCostOfParts.TabIndex = 2
         Me.ToolTip1.SetToolTip(Me.txtCostOfParts, "Enter a positive number for the cost of parts")
         '
@@ -161,7 +163,7 @@ Partial Class Form1
         Me.txtTaxRate.Location = New System.Drawing.Point(201, 165)
         Me.txtTaxRate.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTaxRate.Name = "txtTaxRate"
-        Me.txtTaxRate.Size = New System.Drawing.Size(145, 34)
+        Me.txtTaxRate.Size = New System.Drawing.Size(89, 34)
         Me.txtTaxRate.TabIndex = 2
         Me.ToolTip1.SetToolTip(Me.txtTaxRate, "Enter a positive number between 0 and 10 for the tax rate")
         '
@@ -199,6 +201,15 @@ Partial Class Form1
         Me.btnCancelUpdate.UseVisualStyleBackColor = True
         Me.btnCancelUpdate.Visible = False
         '
+        'txtLaborRate
+        '
+        Me.txtLaborRate.Location = New System.Drawing.Point(335, 78)
+        Me.txtLaborRate.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtLaborRate.Name = "txtLaborRate"
+        Me.txtLaborRate.Size = New System.Drawing.Size(89, 34)
+        Me.txtLaborRate.TabIndex = 2
+        Me.ToolTip1.SetToolTip(Me.txtLaborRate, "Enter a positive number for the cost of labor per hour")
+        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -217,15 +228,6 @@ Partial Class Form1
         Me.Label6.TabIndex = 7
         Me.Label6.Text = "@$"
         '
-        'txtLaborRate
-        '
-        Me.txtLaborRate.Location = New System.Drawing.Point(335, 78)
-        Me.txtLaborRate.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtLaborRate.Name = "txtLaborRate"
-        Me.txtLaborRate.Size = New System.Drawing.Size(89, 34)
-        Me.txtLaborRate.TabIndex = 2
-        Me.ToolTip1.SetToolTip(Me.txtLaborRate, "Enter a positive number for the cost of labor per hour")
-        '
         'Label7
         '
         Me.Label7.AutoSize = True
@@ -235,12 +237,32 @@ Partial Class Form1
         Me.Label7.TabIndex = 7
         Me.Label7.Text = "/hr"
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(202, 126)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(23, 28)
+        Me.Label8.TabIndex = 7
+        Me.Label8.Text = "$"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(297, 171)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(28, 28)
+        Me.Label9.TabIndex = 7
+        Me.Label9.Text = "%"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 28.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(944, 536)
         Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.btnCancelUpdate)
@@ -289,4 +311,6 @@ Partial Class Form1
     Friend WithEvents Label6 As Label
     Friend WithEvents txtLaborRate As TextBox
     Friend WithEvents Label7 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
 End Class

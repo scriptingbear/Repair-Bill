@@ -17,6 +17,10 @@ Public Class Form1
 
         With Validators
             .Add(New TextBoxValidator(txtCustomerName, "^\S\w*", "Invalid Customer Name"))
+            .Add(New TextBoxValidator(txtHoursOfLabor, "^\d{1,3}(\.5)?$", "Invalid Hours of Labor"))
+            .Add(New TextBoxValidator(txtLaborRate, "^\d{1,2}(\.\d{2})?$", "Invalid Labor Rate"))
+            .Add(New TextBoxValidator(txtCostOfParts, "^\d+(\.\d{1,2})?$", "Invalid Cost of Parts"))
+            .Add(New TextBoxValidator(txtTaxRate, "^\d{1,2}(\.\d)?$", "Invalid Tax Rate"))
 
         End With
 

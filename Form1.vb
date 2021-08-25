@@ -112,6 +112,22 @@ Public Class Form1
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        '===================================================================
+        'Clear the number textboxes and the totals labels at the botton
+        'of the ListView control.
+        '===================================================================
+        Dim arTextBoxes As New List(Of TextBox)
+        With arTextBoxes
+            .Add(txtCustomerName)
+            .Add(txtHoursOfLabor)
+            .Add(txtLaborRate)
+            .Add(txtCostOfParts)
+            .Add(txtTaxRate)
+        End With
+
+        For Each obj As TextBox In arTextBoxes
+            obj.Clear()
+        Next obj
 
     End Sub
 

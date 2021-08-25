@@ -65,7 +65,7 @@ Partial Class Form1
         Me.lsvBills.MultiSelect = False
         Me.lsvBills.Name = "lsvBills"
         Me.lsvBills.ShowGroups = False
-        Me.lsvBills.Size = New System.Drawing.Size(639, 227)
+        Me.lsvBills.Size = New System.Drawing.Size(676, 227)
         Me.lsvBills.TabIndex = 10
         Me.lsvBills.UseCompatibleStateImageBehavior = False
         Me.lsvBills.View = System.Windows.Forms.View.Details
@@ -73,7 +73,7 @@ Partial Class Form1
         'colDate
         '
         Me.colDate.Text = "Date"
-        Me.colDate.Width = 90
+        Me.colDate.Width = 140
         '
         'colCustName
         '
@@ -274,7 +274,7 @@ Partial Class Form1
         Me.lblLaborCostTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblLaborCostTotal.Location = New System.Drawing.Point(335, 499)
         Me.lblLaborCostTotal.Name = "lblLaborCostTotal"
-        Me.lblLaborCostTotal.Size = New System.Drawing.Size(76, 25)
+        Me.lblLaborCostTotal.Size = New System.Drawing.Size(100, 25)
         Me.lblLaborCostTotal.TabIndex = 8
         '
         'Label11

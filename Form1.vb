@@ -20,6 +20,8 @@ Public Class Form1
         Dim TaxRate As Double
     End Structure
 
+    Private objListViewItem As ListViewItem
+
     Private Function ValidateInput() As Boolean
         '==========================================================
         '1.) Customer name must not be empty
@@ -66,7 +68,7 @@ Public Class Form1
         Try
             'Get the current date and add it to the ListViewItem, which will eventually
             'be added to the ListView control
-            Dim objListViewItem As New ListViewItem(Today.ToString("MM/dd/yyyy"))
+            objListViewItem = New ListViewItem(Today.ToString("MM/dd/yyyy"))
 
             Dim objLaborCostInfo As LaborCostInfo
             With objLaborCostInfo
@@ -94,8 +96,8 @@ Public Class Form1
 
             'Add fully populated ListViewItem to the ListView control
             lsvBills.Items.Add(objListViewItem)
+            objListViewItem = Nothing
 
-            'TODO Update label controls beneath the ListView with current totals
         Catch ex As Exception
             msgAttention(ex.Message)
             Return False
@@ -125,10 +127,10 @@ Public Class Form1
         Dim dblPartsCostTotal As Double = 0
         Dim dblBillTotal As Double = 0
 
-        For Each objListViewItem As ListViewItem In lsvBills.Items
-            dblLaborCostTotal += CDbl(objListViewItem.SubItems(ListViewColumns.LABOR_COST_COL).Text)
-            dblPartsCostTotal += CDbl(objListViewItem.SubItems(ListViewColumns.PARTS_COST_COL).Text)
-            dblBillTotal += CDbl(objListViewItem.SubItems(ListViewColumns.BILL_TOTAL_COL).Text)
+        For Each obj As ListViewItem In lsvBills.Items
+            dblLaborCostTotal += CDbl(obj.SubItems(ListViewColumns.LABOR_COST_COL).Text)
+            dblPartsCostTotal += CDbl(obj.SubItems(ListViewColumns.PARTS_COST_COL).Text)
+            dblBillTotal += CDbl(obj.SubItems(ListViewColumns.BILL_TOTAL_COL).Text)
         Next
 
         lblLaborCostTotal.Text = FormatCurrency(dblLaborCostTotal)
@@ -186,6 +188,8 @@ Public Class Form1
         'Valdate input controls and then add new ListViewItem to 
         'the ListView control. If a validation fails, a warning
         'message will have been displayed.
+        'If button text is "Update Bill", then call UpdateBill()
+        'instead of AddBill().
         '==========================================================
         If ValidateInput() Then
             msgInfo("Validations were successful!")
@@ -223,7 +227,7 @@ Public Class Form1
         'This event occurs only when the Listview control contains
         'at least 1 item.
         '==========================================================
-        Dim objListViewItem As ListViewItem = lsvBills.SelectedItems(0)
+
         Dim objLaborCostInfo As LaborCostInfo
 
         ClearInputs()

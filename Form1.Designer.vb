@@ -49,8 +49,8 @@ Partial Class Form1
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.lblLaborCostTotal = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
+        Me.lblPartsCostTotal = New System.Windows.Forms.Label()
+        Me.lblBillTotal = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'lsvBills
@@ -65,7 +65,7 @@ Partial Class Form1
         Me.lsvBills.MultiSelect = False
         Me.lsvBills.Name = "lsvBills"
         Me.lsvBills.ShowGroups = False
-        Me.lsvBills.Size = New System.Drawing.Size(676, 227)
+        Me.lsvBills.Size = New System.Drawing.Size(910, 227)
         Me.lsvBills.TabIndex = 10
         Me.lsvBills.UseCompatibleStateImageBehavior = False
         Me.lsvBills.View = System.Windows.Forms.View.Details
@@ -83,17 +83,17 @@ Partial Class Form1
         'colLaborCost
         '
         Me.colLaborCost.Text = "Labor Cost"
-        Me.colLaborCost.Width = 120
+        Me.colLaborCost.Width = 180
         '
         'colPartsCost
         '
         Me.colPartsCost.Text = "Parts Cost"
-        Me.colPartsCost.Width = 100
+        Me.colPartsCost.Width = 180
         '
         'colBillTotal
         '
         Me.colBillTotal.Text = "Total"
-        Me.colBillTotal.Width = 100
+        Me.colBillTotal.Width = 180
         '
         'txtCustomerName
         '
@@ -115,7 +115,7 @@ Partial Class Form1
         '
         'txtCostOfParts
         '
-        Me.txtCostOfParts.Location = New System.Drawing.Point(232, 123)
+        Me.txtCostOfParts.Location = New System.Drawing.Point(220, 123)
         Me.txtCostOfParts.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCostOfParts.Name = "txtCostOfParts"
         Me.txtCostOfParts.Size = New System.Drawing.Size(174, 34)
@@ -173,7 +173,7 @@ Partial Class Form1
         '
         'btnCreateBill
         '
-        Me.btnCreateBill.Location = New System.Drawing.Point(760, 45)
+        Me.btnCreateBill.Location = New System.Drawing.Point(808, 39)
         Me.btnCreateBill.Name = "btnCreateBill"
         Me.btnCreateBill.Size = New System.Drawing.Size(155, 60)
         Me.btnCreateBill.TabIndex = 9
@@ -226,7 +226,7 @@ Partial Class Form1
         '
         'Label5
         '
-        Me.Label5.Location = New System.Drawing.Point(695, 143)
+        Me.Label5.Location = New System.Drawing.Point(726, 147)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(237, 67)
         Me.Label5.TabIndex = 6
@@ -234,10 +234,9 @@ Partial Class Form1
         '
         'Label6
         '
-        Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(297, 84)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(42, 28)
+        Me.Label6.Size = New System.Drawing.Size(120, 28)
         Me.Label6.TabIndex = 7
         Me.Label6.Text = "@$"
         '
@@ -252,13 +251,12 @@ Partial Class Form1
         '
         'Label8
         '
-        Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(202, 126)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(23, 28)
+        Me.Label8.Size = New System.Drawing.Size(130, 28)
         Me.Label8.TabIndex = 7
         Me.Label8.Text = "$"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label9
         '
@@ -271,41 +269,40 @@ Partial Class Form1
         '
         'lblLaborCostTotal
         '
-        Me.lblLaborCostTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lblLaborCostTotal.Location = New System.Drawing.Point(335, 499)
+        Me.lblLaborCostTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblLaborCostTotal.Location = New System.Drawing.Point(394, 484)
         Me.lblLaborCostTotal.Name = "lblLaborCostTotal"
-        Me.lblLaborCostTotal.Size = New System.Drawing.Size(100, 25)
+        Me.lblLaborCostTotal.Size = New System.Drawing.Size(170, 25)
         Me.lblLaborCostTotal.TabIndex = 8
+        Me.lblLaborCostTotal.Tag = ""
         '
-        'Label11
+        'lblPartsCostTotal
         '
-        Me.Label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label11.Location = New System.Drawing.Point(448, 499)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(80, 28)
-        Me.Label11.TabIndex = 8
+        Me.lblPartsCostTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblPartsCostTotal.Location = New System.Drawing.Point(574, 484)
+        Me.lblPartsCostTotal.Name = "lblPartsCostTotal"
+        Me.lblPartsCostTotal.Size = New System.Drawing.Size(170, 28)
+        Me.lblPartsCostTotal.TabIndex = 8
         '
-        'Label12
+        'lblBillTotal
         '
-        Me.Label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label12.Location = New System.Drawing.Point(544, 499)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(80, 28)
-        Me.Label12.TabIndex = 8
+        Me.lblBillTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblBillTotal.Location = New System.Drawing.Point(755, 484)
+        Me.lblBillTotal.Name = "lblBillTotal"
+        Me.lblBillTotal.Size = New System.Drawing.Size(170, 28)
+        Me.lblBillTotal.TabIndex = 8
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 28.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(944, 536)
+        Me.ClientSize = New System.Drawing.Size(1001, 536)
         Me.Controls.Add(Me.btnClear)
-        Me.Controls.Add(Me.Label12)
-        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.lblBillTotal)
+        Me.Controls.Add(Me.lblPartsCostTotal)
         Me.Controls.Add(Me.lblLaborCostTotal)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label9)
-        Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.btnCancelUpdate)
         Me.Controls.Add(Me.btnUpdate)
@@ -320,6 +317,8 @@ Partial Class Form1
         Me.Controls.Add(Me.txtHoursOfLabor)
         Me.Controls.Add(Me.txtCustomerName)
         Me.Controls.Add(Me.lsvBills)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.Label8)
         Me.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Margin = New System.Windows.Forms.Padding(4)
@@ -356,7 +355,7 @@ Partial Class Form1
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents lblLaborCostTotal As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents Label12 As Label
+    Friend WithEvents lblPartsCostTotal As Label
+    Friend WithEvents lblBillTotal As Label
     Friend WithEvents btnClear As Button
 End Class

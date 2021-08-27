@@ -29,6 +29,7 @@ Public Class Form1
         '3.) Cost of labor must be a positive number
         '4.) Cost of parts must be a positive number
         '5.) Tax rate must be positive number or 0
+        '6.) Date must be selected
         '
         'Use Regex to validate each control
         '==========================================================
@@ -49,11 +50,17 @@ Public Class Form1
             End If
         Next
 
+
+        If Not dteBillDate.Text Like "##/##/####" Then
+            msgAttention("Please select a date.")
+            Return False
+        End If
+
         Return True
 
     End Function
 
-    Private Function AddBill() As Boolean
+    Private Function AddBill(ByVal Optional UpdateBill As Boolean = False) As Boolean
         '==========================================================
         'Calculate labor cost. Then create and populate new
         'ListViewItem and add it to the ListView control.
@@ -63,12 +70,24 @@ Public Class Form1
         'they're not displayed in the ListView, because they will
         'be needed when editing an item.
         'Also need to store tax rate, for the same reasons.
+        'Now including date from DatePicker control instead of 
+        'default to current date.
+        'Now supporting updating of selected bill through new
+        'UpdateBill parameter
         '=========================================================
 
         Try
+            Dim objSubItem As ListViewItem.ListViewSubItem
+
+            'If this is a new bill, create a new ListViewItem, otherwise
+            'work with the one already existing.
+            If Not UpdateBill Then
+                objListViewItem = New ListViewItem
+            End If
+
             'Get the current date and add it to the ListViewItem, which will eventually
             'be added to the ListView control
-            objListViewItem = New ListViewItem(Today.ToString("MM/dd/yyyy"))
+            objListViewItem.SubItems(0).Text = dteBillDate.Text
 
             Dim objLaborCostInfo As LaborCostInfo
             With objLaborCostInfo
@@ -82,21 +101,68 @@ Public Class Form1
 
             'Add the remaining items to the ListView using the values in the corrsponding
             'textboxes.
+
             With objListViewItem
-                .SubItems.Add(ListViewColumns.CUST_NAME_COL).Text = txtCustomerName.Text
-                .SubItems.Add(ListViewColumns.LABOR_COST_COL).Text = FormatCurrency(dblLaborCost)
+                'Add or update the Customer Name column in the ListView control
+                If UpdateBill Then
+                    objSubItem = .SubItems(ListViewColumns.CUST_NAME_COL)
+                Else
+                    objSubItem = .SubItems.Add(vbNullString)
+                End If
+                objSubItem.Text = txtCustomerName.Text
+
+                'TODO Delete if new code works
+                '.SubItems.Add(ListViewColumns.CUST_NAME_COL).Text = txtCustomerName.Text
+
+                'Add or update the Labor Cost column in the ListView control
+                If UpdateBill Then
+                    objSubItem = .SubItems(ListViewColumns.LABOR_COST_COL)
+                Else
+                    objSubItem = .SubItems.Add(vbNullString)
+                End If
+                objSubItem.Text = FormatCurrency(dblLaborCost)
+
+                'TODO Delete if new code works
+                '.SubItems.Add(ListViewColumns.LABOR_COST_COL).Text = FormatCurrency(dblLaborCost)
 
                 'Store the labor hours and rate in the Labor Cost subitem for use
-                'when editing an existing bill
+                'when editing an existing bill, regardless of whether adding or updating
+                'a bill.
                 .SubItems(ListViewColumns.LABOR_COST_COL).Tag = objLaborCostInfo
 
-                .SubItems.Add(ListViewColumns.PARTS_COST_COL).Text = FormatCurrency(CDbl(txtCostOfParts.Text))
-                .SubItems.Add(ListViewColumns.BILL_TOTAL_COL).Text = FormatCurrency(dblBillTotal)
+                'Add or update the Parts Cost column in the ListView control
+                If UpdateBill Then
+                    objSubItem = .SubItems(ListViewColumns.PARTS_COST_COL)
+                Else
+                    objSubItem = .SubItems.Add(vbNullString)
+                End If
+                objSubItem.Text = FormatCurrency(CDbl(txtCostOfParts.Text))
+
+                'TODO Delete if new code works
+                '.SubItems.Add(ListViewColumns.PARTS_COST_COL).Text = FormatCurrency(CDbl(txtCostOfParts.Text))
+
+                'Add or update the Total column in the ListView control
+                If UpdateBill Then
+                    objSubItem = .SubItems(ListViewColumns.BILL_TOTAL_COL)
+                Else
+                    objSubItem = .SubItems.Add(vbNullString)
+                End If
+                objSubItem.Text = FormatCurrency(dblBillTotal)
+
+                'TODO Delete if new code works
+                '.SubItems.Add(ListViewColumns.BILL_TOTAL_COL).Text = FormatCurrency(dblBillTotal)
             End With
 
-            'Add fully populated ListViewItem to the ListView control
-            lsvBills.Items.Add(objListViewItem)
+            'Add or update fully populated ListViewItem to the ListView control.
+            'If updating, above code in With..End With block should have updated
+            'the selected ListViewItem.
+            If Not UpdateBill Then
+                lsvBills.Items.Add(objListViewItem)
+            Else
+                btnCreateBill.Text = "Create Bill"
+            End If
             objListViewItem = Nothing
+
 
         Catch ex As Exception
             msgAttention(ex.Message)
@@ -193,9 +259,14 @@ Public Class Form1
         '==========================================================
         If ValidateInput() Then
             msgInfo("Validations were successful!")
-            If Not AddBill() Then Exit Sub
-            UpdateTotalLabels()
+            If btnCreateBill.Text = "Create Bill" Then
+                If Not AddBill() Then Exit Sub
+            Else
+                If Not AddBill(True) Then Exit Sub
+            End If
         End If
+
+        UpdateTotalLabels()
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
@@ -226,23 +297,32 @@ Public Class Form1
         'to the SelectedIndex of the ListView control.
         'This event occurs only when the Listview control contains
         'at least 1 item.
+        'Now setting DatePicker control to corresponding SubItem.
         '==========================================================
 
         Dim objLaborCostInfo As LaborCostInfo
 
-        ClearInputs()
+        Try
+            ClearInputs()
 
-        objListViewItem = lsvBills.SelectedItems(0)
-        With objListViewItem
-            txtCustomerName.Text = .SubItems(ListViewColumns.CUST_NAME_COL).Text
+            objListViewItem = lsvBills.SelectedItems(0)
+            With objListViewItem
+                dteBillDate.Value = Convert.ToDateTime(.SubItems(ListViewColumns.DATE_COL).Text)
+                txtCustomerName.Text = .SubItems(ListViewColumns.CUST_NAME_COL).Text
 
-            objLaborCostInfo = .SubItems(ListViewColumns.LABOR_COST_COL).Tag
-            txtHoursOfLabor.Text = objLaborCostInfo.Hours
-            txtLaborRate.Text = objLaborCostInfo.LaborRate
-            txtTaxRate.Text = objLaborCostInfo.TaxRate
+                objLaborCostInfo = .SubItems(ListViewColumns.LABOR_COST_COL).Tag
+                txtHoursOfLabor.Text = objLaborCostInfo.Hours
+                txtLaborRate.Text = objLaborCostInfo.LaborRate
+                txtTaxRate.Text = objLaborCostInfo.TaxRate
 
-            txtCostOfParts.Text = CDbl(.SubItems(ListViewColumns.PARTS_COST_COL).Text)
-        End With
+                txtCostOfParts.Text = CDbl(.SubItems(ListViewColumns.PARTS_COST_COL).Text)
+
+                'Change text of btnCreateBill so that clicking it will run UpdateBill()
+                btnCreateBill.Text = "Update Bill"
+            End With
+        Catch ex As Exception
+            msgAttention(ex.Message)
+        End Try
 
 
     End Sub

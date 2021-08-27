@@ -51,6 +51,8 @@ Partial Class Form1
         Me.lblLaborCostTotal = New System.Windows.Forms.Label()
         Me.lblPartsCostTotal = New System.Windows.Forms.Label()
         Me.lblBillTotal = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.dteBillDate = New System.Windows.Forms.DateTimePicker()
         Me.SuspendLayout()
         '
         'lsvBills
@@ -292,11 +294,31 @@ Partial Class Form1
         Me.lblBillTotal.Size = New System.Drawing.Size(170, 28)
         Me.lblBillTotal.TabIndex = 8
         '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(53, 207)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(53, 28)
+        Me.Label10.TabIndex = 3
+        Me.Label10.Text = "Date"
+        '
+        'dteBillDate
+        '
+        Me.dteBillDate.CustomFormat = "MM/dd/yyyy"
+        Me.dteBillDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dteBillDate.Location = New System.Drawing.Point(201, 207)
+        Me.dteBillDate.Name = "dteBillDate"
+        Me.dteBillDate.Size = New System.Drawing.Size(145, 34)
+        Me.dteBillDate.TabIndex = 11
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 28.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1001, 536)
+        Me.Controls.Add(Me.dteBillDate)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.lblBillTotal)
         Me.Controls.Add(Me.lblPartsCostTotal)
@@ -307,6 +329,7 @@ Partial Class Form1
         Me.Controls.Add(Me.btnCancelUpdate)
         Me.Controls.Add(Me.btnUpdate)
         Me.Controls.Add(Me.btnCreateBill)
+        Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -358,4 +381,6 @@ Partial Class Form1
     Friend WithEvents lblPartsCostTotal As Label
     Friend WithEvents lblBillTotal As Label
     Friend WithEvents btnClear As Button
+    Friend WithEvents Label10 As Label
+    Friend WithEvents dteBillDate As DateTimePicker
 End Class

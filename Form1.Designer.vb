@@ -39,8 +39,6 @@ Partial Class Form1
         Me.txtTaxRate = New System.Windows.Forms.TextBox()
         Me.btnCreateBill = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.btnUpdate = New System.Windows.Forms.Button()
-        Me.btnCancelUpdate = New System.Windows.Forms.Button()
         Me.txtLaborRate = New System.Windows.Forms.TextBox()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -68,7 +66,7 @@ Partial Class Form1
         Me.lsvBills.Name = "lsvBills"
         Me.lsvBills.ShowGroups = False
         Me.lsvBills.Size = New System.Drawing.Size(910, 227)
-        Me.lsvBills.TabIndex = 10
+        Me.lsvBills.TabIndex = 8
         Me.lsvBills.UseCompatibleStateImageBehavior = False
         Me.lsvBills.View = System.Windows.Forms.View.Details
         '
@@ -183,30 +181,6 @@ Partial Class Form1
         Me.ToolTip1.SetToolTip(Me.btnCreateBill, "Create new bill and add it to the list" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         Me.btnCreateBill.UseVisualStyleBackColor = True
         '
-        'btnUpdate
-        '
-        Me.btnUpdate.Font = New System.Drawing.Font("Wingdings", 22.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.btnUpdate.Location = New System.Drawing.Point(524, 106)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(155, 60)
-        Me.btnUpdate.TabIndex = 7
-        Me.btnUpdate.Text = "ü"
-        Me.ToolTip1.SetToolTip(Me.btnUpdate, "Update bill")
-        Me.btnUpdate.UseVisualStyleBackColor = True
-        Me.btnUpdate.Visible = False
-        '
-        'btnCancelUpdate
-        '
-        Me.btnCancelUpdate.Font = New System.Drawing.Font("Wingdings", 22.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.btnCancelUpdate.Location = New System.Drawing.Point(524, 166)
-        Me.btnCancelUpdate.Name = "btnCancelUpdate"
-        Me.btnCancelUpdate.Size = New System.Drawing.Size(155, 60)
-        Me.btnCancelUpdate.TabIndex = 8
-        Me.btnCancelUpdate.Text = "û"
-        Me.ToolTip1.SetToolTip(Me.btnCancelUpdate, "Cancel update")
-        Me.btnCancelUpdate.UseVisualStyleBackColor = True
-        Me.btnCancelUpdate.Visible = False
-        '
         'txtLaborRate
         '
         Me.txtLaborRate.Location = New System.Drawing.Point(335, 78)
@@ -221,7 +195,7 @@ Partial Class Form1
         Me.btnClear.Location = New System.Drawing.Point(524, 39)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(155, 60)
-        Me.btnClear.TabIndex = 6
+        Me.btnClear.TabIndex = 7
         Me.btnClear.Text = "Clear"
         Me.ToolTip1.SetToolTip(Me.btnClear, "Clear the billing info textboxes")
         Me.btnClear.UseVisualStyleBackColor = True
@@ -311,7 +285,7 @@ Partial Class Form1
         Me.dteBillDate.Location = New System.Drawing.Point(201, 207)
         Me.dteBillDate.Name = "dteBillDate"
         Me.dteBillDate.Size = New System.Drawing.Size(145, 34)
-        Me.dteBillDate.TabIndex = 11
+        Me.dteBillDate.TabIndex = 6
         '
         'Form1
         '
@@ -326,8 +300,6 @@ Partial Class Form1
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.btnCancelUpdate)
-        Me.Controls.Add(Me.btnUpdate)
         Me.Controls.Add(Me.btnCreateBill)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label4)
@@ -369,8 +341,6 @@ Partial Class Form1
     Friend WithEvents txtTaxRate As TextBox
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents btnCreateBill As Button
-    Friend WithEvents btnUpdate As Button
-    Friend WithEvents btnCancelUpdate As Button
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents txtLaborRate As TextBox

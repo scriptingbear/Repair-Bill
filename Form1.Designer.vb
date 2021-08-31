@@ -51,6 +51,7 @@ Partial Class Form1
         Me.lblBillTotal = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.dteBillDate = New System.Windows.Forms.DateTimePicker()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'lsvBills
@@ -287,11 +288,21 @@ Partial Class Form1
         Me.dteBillDate.Size = New System.Drawing.Size(145, 34)
         Me.dteBillDate.TabIndex = 6
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(524, 147)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(94, 29)
+        Me.Button1.TabIndex = 10
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 28.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1001, 536)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.dteBillDate)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.lblBillTotal)
@@ -353,4 +364,5 @@ Partial Class Form1
     Friend WithEvents btnClear As Button
     Friend WithEvents Label10 As Label
     Friend WithEvents dteBillDate As DateTimePicker
+    Friend WithEvents Button1 As Button
 End Class
